@@ -29,6 +29,9 @@ class MNIST_Classifier(object):
         self.x_train = self.x_train.reshape(-1, 28, 28, 1).astype(np.float32)/255.0
         self.x_test = self.x_test.reshape(-1, 28, 28, 1).astype(np.float32)/255.0
         
+        self.y_train = np.squeeze(np.eye(10)[self.y_train.reshape(-1)])
+        self.y_test = np.squeeze(np.eye(10)[self.y_test.reshape(-1)])
+        
         self.classifier = self.classifier()
 
     def train(self, train_steps=10000, batch_size=64):
